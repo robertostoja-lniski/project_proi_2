@@ -5,9 +5,9 @@
 #include <algorithm>
 #include <cstdlib>
 #include <vector>
-#include "customers.h"
-#include "workshop.h"
-#include "userInteraction.h"
+#include "Customers.h"
+#include "Workshop.h"
+#include "UserInteraction.h"
 using namespace std;
 
 Customers::Customers() {
