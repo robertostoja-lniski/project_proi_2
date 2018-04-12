@@ -10,7 +10,7 @@
 #include "Customers.h"
 #include "Workshop.h"
 
-class userInteraction{
+class UserInteraction{
 
 	private:
 		Customers custList;
@@ -18,8 +18,8 @@ class userInteraction{
 		Workshop workshopSetup;
 		
 	public:
-		userInteraction();
-		~userInteraction();
+		UserInteraction();
+		~UserInteraction();
 		void drawMenu();
 		template <typename T> T readAll(T bottom, T top);
 		template <typename T> T readAll();

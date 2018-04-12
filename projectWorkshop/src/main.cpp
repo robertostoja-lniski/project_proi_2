@@ -14,6 +14,6 @@ using namespace std;
 	*/
 int main()
 {
-    userInteraction uI;
+    UserInteraction uI;
     uI.drawMenu();
 }

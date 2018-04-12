@@ -12,16 +12,16 @@
 #include "Workers.h"
 using namespace std;
 
-userInteraction :: userInteraction() {
+UserInteraction :: UserInteraction() {
 	
 	
 	Workshop workshopSetup;	
 	workerGroup.sortWorkers();
 }
-userInteraction :: ~userInteraction() { cout << "everything destructed :)";}
-void userInteraction :: drawMenu() {
+UserInteraction :: ~UserInteraction() { cout << "everything destructed :)" << endl;}
+void UserInteraction :: drawMenu() {
 	  
-	  
+	  cout << "Welcom to Workshop Simulator" << endl;
 	  int speed,tires,vip,openingHour,closingHour;
 	  string name;
 	  cout << " 1. to use Default setup\n" << " 2. to use your Own\n";
@@ -128,7 +128,7 @@ void userInteraction :: drawMenu() {
 /* metoda wczytujaca dane dowolnego typu spelniajace waruenk,
 ze naleza do przedzialu <bottom, top> */
 template <typename T> T 
-userInteraction :: readAll(T bottom, T top) {
+UserInteraction :: readAll(T bottom, T top) {
 	T c;
 	bool check;
    	do{
@@ -150,7 +150,7 @@ userInteraction :: readAll(T bottom, T top) {
    return c;
 }
 template <typename T> T 
-userInteraction :: readAll() {
+UserInteraction :: readAll() {
 	T c;
 	bool check;
    	do{
