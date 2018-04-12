@@ -10,16 +10,16 @@
 #include "Customers.h"
 #include "Workshop.h"
 
-class UserInteraction{
+class userInteraction{
 
 	private:
-		Customers<string> custList;
+		Customers custList;
 		Workers workerGroup;
 		Workshop workshopSetup;
 		
 	public:
-		UserInteraction();
-		~UserInteraction();
+		userInteraction();
+		~userInteraction();
 		void drawMenu();
 		template <typename T> T readAll(T bottom, T top);
 		template <typename T> T readAll();

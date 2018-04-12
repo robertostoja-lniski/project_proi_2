@@ -9,21 +9,14 @@
 #include <cstdlib>
 #include "Workers.h"
 #include "Customers.h"
-
+#include "Box.h"
 
 class Workshop {
 	
 	private:
 		int boxes;
 		int open;
-	struct Work {
-			bool available;
-			std::string custName;
-			std::string workerName;
-			int time;
-			int workerSpeed;
-		};
-        std::vector<Work> workPlace;
+        std::vector<Box> workPlace;
     public:   
     	//konstruktor 	
         Workshop();
@@ -44,7 +37,7 @@ class Workshop {
         //wyswietla layout warsztatu
         void drawWorkshop();
         //ustawia samochody w boxach
-        void setCars(Customers<string>&);
+        void setCars(Customers&);
         //ustawia pracownikow do boxow
         void setWorkers(Workers&);
 };

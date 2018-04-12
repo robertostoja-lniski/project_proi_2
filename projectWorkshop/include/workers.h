@@ -6,18 +6,11 @@
 #include <cstring>
 #include <algorithm>
 #include <cstdlib>
-
+#include "Worker.h"
 class Workers {
 
-		struct workerParams{
-			std::string name;
-			int speed;
-			bool working;
-			bool operator<(const workerParams&);
-			
-		};
-		
-		std::vector <workerParams> workerVector;
+		//Worker workerParams;
+		std::vector <Worker> workerVector;
 	public:
 		//konstruktor
 		Workers();
@@ -42,6 +35,7 @@ class Workers {
 		void sortWorkers();
 		//pokazuje pracownikow
 		void showWorkers();
+		bool operator<(const Worker&);
 };
 
 #endif // EMPLOYEE_H_INCLUDED

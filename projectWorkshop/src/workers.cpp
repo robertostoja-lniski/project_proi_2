@@ -5,43 +5,43 @@
 #include <algorithm>
 #include <cstdlib>
 #include "Workers.h"
+#include "Worker.h"
 using namespace std;
 	
 Workers :: Workers(){};
-bool Workers::workerParams::operator< (const workerParams& a){
-		return speed >= a.speed;	
-}
+
 Workers::~Workers() {
 	workerVector.clear();
 }
+
 int Workers::getSpeedAt(int i) {
 	if(i<workerVector.size())
-		return workerVector[i].speed;
+		return workerVector[i].getSpeed();
 	else	
 		return 0;
 }
 string Workers::getNameAt(int i) {
 	if(i<workerVector.size())
-		return workerVector[i].name;
+		return workerVector[i].getName();
 	else
 		return "";
 }
 bool Workers::getWorkingAt(int i) {
 	if(i<workerVector.size())
-		return workerVector[i].working;
+		return workerVector[i].getWorking();
 	else
 		return 0;
 };
 void Workers::setWorkingAt(int i, int val) {
 	if(i<workerVector.size())
-		workerVector[i].working = val;
+		workerVector[i].setWorking(val);
 	return;
 };
 void Workers::removeWorker(string name, int speed) {
 	
-		vector<workerParams>::iterator it = workerVector.begin();
+		vector<Worker>::iterator it = workerVector.begin();
 		for(it; it != workerVector.end(); ++it) {
-					if(it->name==name && it->speed == speed ) {
+					if(it->getName()==name && it->getSpeed() == speed ) {
 							workerVector.erase(it);
 							cout << "worker is fired!" << endl;
 							return;
@@ -50,7 +50,8 @@ void Workers::removeWorker(string name, int speed) {
 		cout << "the worker you want to fire, is already fired!" << endl;
 }
 void Workers :: addWorker(string name, int speed) {
-			workerVector.push_back({name, speed, false});
+			Worker w(name,speed,false);
+			workerVector.push_back(w);
 		}
 		
 void Workers :: sortWorkers() {
@@ -58,11 +59,11 @@ void Workers :: sortWorkers() {
 		}
 void Workers :: showWorkers() {
 		
-		vector<workerParams>::iterator it = workerVector.begin();
+		vector<Worker>::iterator it = workerVector.begin();
 		for(it; it != workerVector.end(); ++it) {
-					if(it->name!="") 
-					cout << " name: " << it->name << " speed : "
-						 << it->speed << " if working: " << it->working<< endl;
+					if(it->getName()!="") 
+					cout << " name: " << it->getName() << " speed : "
+						 << it->getSpeed() << " if working: " << it->getWorking()<< endl;
 			}
 		}
 void Workers :: setDefault(Workers& w) {

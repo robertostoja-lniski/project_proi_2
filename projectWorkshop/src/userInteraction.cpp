@@ -12,13 +12,14 @@
 #include "Workers.h"
 using namespace std;
 
-UserInteraction :: UserInteraction() {
+userInteraction :: userInteraction() {
+	
 	
 	Workshop workshopSetup;	
 	workerGroup.sortWorkers();
 }
-UserInteraction :: ~UserInteraction() { cout << "everything destructed :)" << endl;}
-void UserInteraction :: drawMenu() {
+userInteraction :: ~userInteraction() { cout << "everything destructed :)";}
+void userInteraction :: drawMenu() {
 	  
 	  
 	  int speed,tires,vip,openingHour,closingHour;
@@ -96,6 +97,7 @@ void UserInteraction :: drawMenu() {
             break;
         }
         case 5: {
+
         	workshopSetup.setCars(custList );
         	workerGroup.sortWorkers();
         //	workerGroup.showWorkers();
@@ -126,7 +128,7 @@ void UserInteraction :: drawMenu() {
 /* metoda wczytujaca dane dowolnego typu spelniajace waruenk,
 ze naleza do przedzialu <bottom, top> */
 template <typename T> T 
-UserInteraction :: readAll(T bottom, T top) {
+userInteraction :: readAll(T bottom, T top) {
 	T c;
 	bool check;
    	do{
@@ -148,7 +150,7 @@ UserInteraction :: readAll(T bottom, T top) {
    return c;
 }
 template <typename T> T 
-UserInteraction :: readAll() {
+userInteraction :: readAll() {
 	T c;
 	bool check;
    	do{
