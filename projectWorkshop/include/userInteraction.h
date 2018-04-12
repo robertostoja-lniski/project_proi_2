@@ -6,11 +6,11 @@
 #include <cstring>
 #include <algorithm>
 #include <cstdlib>
-#include "workers.h"
-#include "customers.h"
-#include "workshop.h"
+#include "Workers.h"
+#include "Customers.h"
+#include "Workshop.h"
 
-class userInteraction{
+class UserInteraction{
 
 	private:
 		Customers<string> custList;
@@ -18,8 +18,8 @@ class userInteraction{
 		Workshop workshopSetup;
 		
 	public:
-		userInteraction();
-		~userInteraction();
+		UserInteraction();
+		~UserInteraction();
 		void drawMenu();
 		template <typename T> T readAll(T bottom, T top);
 		template <typename T> T readAll();

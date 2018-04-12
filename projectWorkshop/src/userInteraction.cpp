@@ -6,19 +6,19 @@
 #include <typeinfo>
 #include <cstdlib>
 #include <vector>
-#include "customers.h"
-#include "workshop.h"
-#include "userInteraction.h"
-#include "workers.h"
+#include "Customers.h"
+#include "Workshop.h"
+#include "UserInteraction.h"
+#include "Workers.h"
 using namespace std;
 
-userInteraction :: userInteraction() {
+UserInteraction :: UserInteraction() {
 	
 	Workshop workshopSetup;	
 	workerGroup.sortWorkers();
 }
-userInteraction :: ~userInteraction() { cout << "everything destructed :)" << endl;}
-void userInteraction :: drawMenu() {
+UserInteraction :: ~UserInteraction() { cout << "everything destructed :)" << endl;}
+void UserInteraction :: drawMenu() {
 	  
 	  
 	  int speed,tires,vip,openingHour,closingHour;
@@ -126,7 +126,7 @@ void userInteraction :: drawMenu() {
 /* metoda wczytujaca dane dowolnego typu spelniajace waruenk,
 ze naleza do przedzialu <bottom, top> */
 template <typename T> T 
-userInteraction :: readAll(T bottom, T top) {
+UserInteraction :: readAll(T bottom, T top) {
 	T c;
 	bool check;
    	do{
@@ -148,7 +148,7 @@ userInteraction :: readAll(T bottom, T top) {
    return c;
 }
 template <typename T> T 
-userInteraction :: readAll() {
+UserInteraction :: readAll() {
 	T c;
 	bool check;
    	do{

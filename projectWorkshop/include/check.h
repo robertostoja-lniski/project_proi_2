@@ -1,6 +1,0 @@
-#ifndef CHECK_H_INCLUDED
-#define CHECK_H_INCLUDED
-
-
-
-#endif // CHECK_H_INCLUDED

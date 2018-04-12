@@ -7,8 +7,8 @@
 #include <cstring>
 #include <algorithm>
 #include <cstdlib>
-#include "workers.h"
-#include "customers.h"
+#include "Workers.h"
+#include "Customers.h"
 
 
 class Workshop {
