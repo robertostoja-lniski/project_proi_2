@@ -16,6 +16,8 @@ class Workshop {
 	private:
 		int boxes;
 		int open;
+		int openingHour;
+		int closingHour;
         std::vector<Box> workPlace;
     public:   
     	//konstruktor 	
@@ -24,6 +26,16 @@ class Workshop {
         ~Workshop();
         //zwraca ilosc godzin otwarcia warsztatu
         int getOpen();
+        //ustawia godzine otwarcia
+        void setOpeningHour(int);
+        //ustawia godzine zamkniecia
+        void setClosingHour(int);
+        //ustawia domyslnie godziny otwarcia i zamkniecia
+        void setDefaultHours();
+        //pobiera godzine otwarcia
+        int getOpeningHour();
+        //pobiera godzine zamkniecia
+        int getClosingHour();
         //sprawdza czy dzien zakonczyl sie sukcesem
         //(czy kazdy klient zostal obsluzony)
         bool checkSuccess();

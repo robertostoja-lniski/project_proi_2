@@ -29,7 +29,7 @@ class Customers {
         //wypisuje wektor zadowolonych klientow
         void printCustVector();
         //ustawia domyslna kolejke   
-        void setDefault(Customers&);
+        void setDefault();
         //dodaje klienta ktory ma podana wartosc 1 gdy jest vipem
         void insert(std::string, int , bool );
         //dodaje klienta (nie vipa)

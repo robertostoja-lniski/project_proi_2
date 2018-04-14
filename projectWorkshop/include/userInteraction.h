@@ -20,7 +20,16 @@ class UserInteraction{
 	public:
 		UserInteraction();
 		~UserInteraction();
-		void drawMenu();
+		void start();
+		void initialize();
+		void addCustomer();
+		void addWorker();
+		void removeCustomer();
+		void removeWorker();
+		void simulate();
+		void endDay();
+		void makeAChoice(int);
+		int askForChoice();
 		template <typename T> T readAll(T bottom, T top);
 		template <typename T> T readAll();
 };

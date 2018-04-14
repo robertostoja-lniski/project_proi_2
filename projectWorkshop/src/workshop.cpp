@@ -8,6 +8,10 @@
 #include "Customers.h"
 #include "Workshop.h"
 #include "UserInteraction.h"
+
+#define DEFAULT_OPENING_HR 8
+#define DEFAULT_CLOSING_HR 16
+#define DEFAULT_BOX_NUM 3
 using namespace std;
 
 
@@ -17,6 +21,22 @@ Workshop::Workshop() {
 }
 Workshop::~Workshop() {
 	workPlace.clear();
+}
+void Workshop::setOpeningHour(int time) {
+	openingHour = time;
+}
+void Workshop::setClosingHour(int time) {
+	closingHour = time;
+}
+int Workshop::getOpeningHour() {
+	return openingHour;
+}
+int Workshop::getClosingHour() {
+	return closingHour;
+}
+void Workshop::setDefaultHours() {
+	openingHour = DEFAULT_OPENING_HR;
+	closingHour = DEFAULT_CLOSING_HR;
 }
 int Workshop::stringToInt(string s) {
 	int result=0;

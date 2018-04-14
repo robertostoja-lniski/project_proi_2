@@ -5,9 +5,9 @@
 #include <algorithm>
 #include <cstdlib>
 #include <vector>
-#include "Customers.h"
-#include "Workshop.h"
-#include "UserInteraction.h"
+#include "customers.h"
+#include "workshop.h"
+#include "userInteraction.h"
 using namespace std;
 
 Customers::Customers() {
@@ -19,8 +19,8 @@ Customers::~Customers() {
 }
 void Customers::printCustVector() {
   
-        vector<CustomerBase*>::iterator it = satisfiedCustomers.begin();
-		for(it; it != satisfiedCustomers.end(); ++it) {
+        vector<CustomerBase*>::iterator it;
+		for(it = satisfiedCustomers.begin(); it != satisfiedCustomers.end(); ++it) {
                cout << (*(*it));
 			}
 }
@@ -122,11 +122,10 @@ void Customers:: display() {
             }
         }
 
-void Customers:: setDefault(Customers& pq) {
-    
+void Customers:: setDefault() {
      string nameTest = "customer X";
      for(int i =0; i < 4; i++) {
 			nameTest += (char)(i*55);
-			pq.insert(nameTest, i*i*i%4 +1, i%2);
+			insert(nameTest, i*i*i%4 +1, i%2);
     	}
 }

@@ -63,16 +63,10 @@ void Workers :: showWorkers() {
 						 << it->getSpeed() << " if working: " << it->getWorking()<< endl;
 			}
 		}
-void Workers :: setDefault(Workers& w) {
-	string name;
-	 for(int i =0; i < 4; i++) {
-			switch(i) {
-				case 1: w.addWorker("Janek", 1);  break;
-				case 2: w.addWorker("Marek", 2); break;
-				case 3: w.addWorker("Tomek", 3); break;
-				case 4: w.addWorker("Jozek", 0); break;
-			}
-
-    	}	
+void Workers :: setDefault() {
+	addWorker("Janek", 1); 
+	addWorker("Marek", 2); 
+	addWorker("Tomek", 3); 
+	addWorker("Jozek", 1); 
 }
 

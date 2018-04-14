@@ -26,7 +26,7 @@ class Workers {
 		//pracy w n-tym boxie
 		void setWorkingAt(int, int);
 		//ustawia domyslnie pracownikow
-		void setDefault(Workers&);
+		void setDefault();
 		//dodaje pracownika
 		void addWorker(std::string , int );
 		//wyrzuca pracownika z warsztatu
