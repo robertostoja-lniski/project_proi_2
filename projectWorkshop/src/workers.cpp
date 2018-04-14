@@ -13,7 +13,6 @@ Workers :: Workers(){};
 Workers::~Workers() {
 	workerVector.clear();
 }
-
 int Workers::getSpeedAt(int i) {
 	if(i<workerVector.size())
 		return workerVector[i].getSpeed();
@@ -24,7 +23,7 @@ string Workers::getNameAt(int i) {
 	if(i<workerVector.size())
 		return workerVector[i].getName();
 	else
-		return "";
+		return "#";
 }
 bool Workers::getWorkingAt(int i) {
 	if(i<workerVector.size())
@@ -47,21 +46,19 @@ void Workers::removeWorker(string name, int speed) {
 							return;
 					}
 			}
-		cout << "the worker you want to fire, is already fired!" << endl;
+		cout << "probably, the worker you want to fire, is already fired!" << endl;
 }
 void Workers :: addWorker(string name, int speed) {
 			Worker w(name,speed,false);
 			workerVector.push_back(w);
-		}
-		
+		}		
 void Workers :: sortWorkers() {
 			sort(workerVector.begin(), workerVector.end());
 		}
-void Workers :: showWorkers() {
-		
+void Workers :: showWorkers() {		
 		vector<Worker>::iterator it = workerVector.begin();
 		for(it; it != workerVector.end(); ++it) {
-					if(it->getName()!="") 
+					if(it->getName()!="#") 
 					cout << " name: " << it->getName() << " speed : "
 						 << it->getSpeed() << " if working: " << it->getWorking()<< endl;
 			}

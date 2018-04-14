@@ -17,8 +17,15 @@ Customers::~Customers() {
     while(front!=NULL)
         pop();
 }
+void Customers::printCustVector() {
+  
+        vector<CustomerBase*>::iterator it = satisfiedCustomers.begin();
+		for(it; it != satisfiedCustomers.end(); ++it) {
+               cout << (*(*it));
+			}
+}
 void Customers::remove(std::string name, int tires, bool vip) {
-            Customer<string> *q, *toDel;
+            Customer<string> *q;
             q = front;
             if(name == q->getCustomerName() && tires == q->getTiresToChange()
                    && vip == q->getVip()) {
@@ -29,9 +36,9 @@ void Customers::remove(std::string name, int tires, bool vip) {
             while (q->getLink() != NULL ) {
                 if(name == q->getLink()->getCustomerName() && tires == q->getLink()->getTiresToChange()
                    && vip == q->getLink()->getVip()) {
-                        toDel=q->getLink();
                         q->setLink(q->getLink()->getLink());
                         cout << "Customer went home!" << endl;
+
                         return;
                    }   
                 q=q->getLink();
@@ -47,17 +54,16 @@ void Customers:: insert(std::string name, int tires, bool vip) {
             Customer<string> *tmp, *q;
             tmp = new Customer<string>(name, tires, vip);
          
-         //   cout << "tires are " << tmp->getTiresToChange() << endl;
-            if (front == NULL || vip > front->getVip())
-            {
+
+            if (front == NULL || vip > front->getVip()){
           
                 tmp->setLink(front);
                 front = tmp;
-            //    cout << "tires are " << front->getTiresToChange() << endl;
+
             }
             else
             {
-              //  cout << "No dobra... Ani vip, ani front to nie NULL" << endl;
+
                 q = front;
                 while (q->getLink() != NULL && q->getLink()->getVip() >= vip) {
                        q=q->getLink();
@@ -67,8 +73,6 @@ void Customers:: insert(std::string name, int tires, bool vip) {
                 q->setLink(tmp);
 
             }
-         
-           // cout << endl;
         }
 
 void Customers:: insert(std::string name, int tires) {
@@ -86,12 +90,11 @@ void Customers:: insert(std::string name, int tires) {
             }
          
 void Customers:: pop() {
-            Customer<string> *tmp;
+
             if(front == NULL)
                 cout<<"No customers in queue\n";
             else
             {
-                tmp = front;
                 front=front->getLink();
             }
         }
@@ -124,9 +127,6 @@ void Customers:: setDefault(Customers& pq) {
      string nameTest = "customer X";
      for(int i =0; i < 4; i++) {
 			nameTest += (char)(i*55);
-			//
-		//
-			cout << "try to Add " << nameTest << " " << i*i*i%4 +1 << " " << i%2 << endl; 
 			pq.insert(nameTest, i*i*i%4 +1, i%2);
     	}
 }

@@ -4,21 +4,24 @@
 class Box {
 	
 		bool available;
+		bool vip;
 		std::string custName;
 		std::string workerName;
 		int time;
 		int workerSpeed;
 public:
 		Box();
-		Box(bool, string, string, int, int);
+		Box(bool, std::string, std::string, int, int);
 		bool getAvailable();
+		bool getVip();
 		std::string getCustName();
 		std::string getWorkerName();
 		int getTime();
 		int getWorkerSpeed();
 		void setAvailable(bool);
-		void setCustName(string);
-		void setWorkerName(string);
+		void setVip(bool);
+		void setCustName(std::string);
+		void setWorkerName(std::string);
 		void setTime(int);
 		void setWorkerSpeed(int);		
 };

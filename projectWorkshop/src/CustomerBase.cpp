@@ -11,7 +11,6 @@
 #include "CustomerBase.h"
 using namespace std;
 
-	
 CustomerBase::CustomerBase( int tiresToChange, bool vip) {
 	this->vip = vip;
 	this->tiresToChange = tiresToChange;

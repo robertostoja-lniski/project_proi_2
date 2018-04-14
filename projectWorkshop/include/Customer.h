@@ -19,8 +19,15 @@ public:
         
         void setCustomerName(T);
         void setLink(Customer<T>*);
+        
+        void showCust(std::ostream& stream) const;
                 
 };
+template <typename T>
+void Customer<T>::showCust(std::ostream& stream) const {
+	stream << customerName;
+	vip ? stream << ", who was a vip\n" : stream << ", who was not a vip\n";
+}
 template <typename T>
 Customer<T>::Customer( T Name, int tiresToChange, bool vip)
 		: CustomerBase( tiresToChange,  vip){

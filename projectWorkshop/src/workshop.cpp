@@ -18,6 +18,19 @@ Workshop::Workshop() {
 Workshop::~Workshop() {
 	workPlace.clear();
 }
+int Workshop::stringToInt(string s) {
+	int result=0;
+	
+	for(int i=0; i<s.size(); i++){
+			result*=10;
+		if(!isdigit(s[i])) {
+			return -1;		
+		}else {
+			result+=(int)s[i]-48;
+		}
+	}
+	return result;
+}
 int Workshop::getOpen() {
 	return open;
 }
@@ -25,11 +38,10 @@ int Workshop::getOpen() {
 void Workshop::setBoxes(int num) {
 	boxes = num;
 	for(int i=0; i<boxes; i++ ) {
-		Box b();
 		workPlace.push_back({1,"#", "#",0,0});	
 	}
 }
-void Workshop::simulateHour(Workers& w) {
+void Workshop::simulateHour(Workers& w, Customers& c) {
 	
 	int tiresBefore, tiresNow;
 	for(int i=0; i<boxes; i++){
@@ -42,9 +54,30 @@ void Workshop::simulateHour(Workers& w) {
 			cout << "In box " << i << " " << workPlace[i].getCustName()  << " had " << tiresBefore
 				<< " tires to change " << " ,now there are " << tiresNow  << " tires to change" << endl;
 		}
-			!tiresNow ? workPlace[i].setAvailable(true) : workPlace[i].setAvailable(0);
+		// jesli nie ma juz opon do zmiany w danym boxie, ale byl w nim klient
+		if(tiresNow==0 && workPlace[i].getCustName()!="#") {
+				// zwolnij box
+			workPlace[i].setAvailable(true);
+			// proba rzutowania stringa na inta
+			int customerCode = stringToInt(workPlace[i].getCustName());
+			// korzysta z szablonu klasy Customer 
+			if(customerCode >=0) {
+				c.addCustomer(customerCode, tiresNow, workPlace[i].getVip());			
+			} else {
+				c.addCustomer(workPlace[i].getCustName(),tiresNow, workPlace[i].getVip());
+			}
+			// po wpisaniu klienta do wektora, opuszcza warszata
+			// stad jego imie zamieniane jest na "#
+			workPlace[i].setCustName("#");
+		} else {
+			// jesli sa opony do zmiany, to utrzymaj niedostepnosc boxu
+			// (nowy klient nie bedzie mogl wjechac)
+			workPlace[i].setAvailable(0);
+		}
+			// usun kazdego pracownika z boxu
+			// mozliwe, ze przy kolejnym przejsciu, bedzie istnialo
+			// bardziej wydajne ustawienie
 			workPlace[i].setWorkerName("#");
-			
 			w.setWorkingAt(i,0);
 		}
 	open++;
@@ -62,7 +95,6 @@ void Workshop::drawWorkshop() {
 			cout << " /--\\    |";
 			else
 				cout<<"         |";
-		//cout << "|0--0-|" << "      He is"; ptr->vip ? : cout << " not"; 
 	}
 	cout << endl << "|";
 	for(int i=0; i<boxes; i++) {
@@ -73,18 +105,15 @@ void Workshop::drawWorkshop() {
 			
 	}
 	cout << endl;
-	
-	
 }
 void Workshop::setCars(Customers& c) {
-	
-	
+		
 	for(int i =0; i<boxes; i++) {
 			// jesli box jest wolny to wjezdza nowy samochod
 		if(workPlace[i].getAvailable() && c.getFront()!=NULL) {
 			workPlace[i].setCustName(c.getFront()->getCustomerName());
 			workPlace[i].setTime(c.getFront()->getTiresToChange());
-			
+			workPlace[i].setVip(c.getFront()->getVip());
 			// ustawia samochod w boxie, wiec box nie jest juz dostepny
 			workPlace[i].setAvailable(0);
 			c.pop();
@@ -94,18 +123,18 @@ void Workshop::setCars(Customers& c) {
 }
 bool Workshop::checkSuccess() {
 	
-	for(int i =0; i<boxes; i++) {
-			
+	for(int i =0; i<boxes; i++) {		
 		if(!workPlace[i].getAvailable()) {
 			return 0;
 		}
 	}
+	return 1;
 }
 void Workshop::leftCustomers() {
 
 	for(int i =0; i<boxes; i++) {
 			
-		if(!workPlace[i].getAvailable()) {
+		if(!workPlace[i].getAvailable() && workPlace[i].getCustName()!="#") {
 			cout << "These customers are : " <<  workPlace[i].getCustName() <<" ";
 		}
 		cout << ". " <<  endl;
@@ -123,6 +152,7 @@ void Workshop::setWorkers(Workers& w){
 	// samochodu, ktory ma 6 opon do zmiany, zamiast do samochodu z 3 oponami ( wtedy zmieni opony 
 	// i bedzie "siedzial bezczynnie"). Po drugie, przykladowo, lepiej jest przydzielic pracownika
 	// o szybkosci 5 do samochodu z 5 oponami do zmiany, niz z 6. (wtedy samochod szybciej opusci warsztat)
+	
 	for(int i=0; i<boxes; i++) {
 		optimalDiff = 1000000000;
 		for(int j=0; j<boxes; j++) {
@@ -136,7 +166,8 @@ void Workshop::setWorkers(Workers& w){
 						workPlace[j].setWorkerName(w.getNameAt(i));
 						workPlace[j].setWorkerSpeed(w.getSpeedAt(i));
 						w.setWorkingAt(i,1);
-						if(w.getNameAt(i)!= "")
+						//cout << w.getNameAt(i) << endl;
+						if(w.getNameAt(i)!= "#")
 						cout << w.getNameAt(i) << " is set to " << j << " box with speed " << w.getSpeedAt(i) << endl;
 				}
 			}

@@ -21,7 +21,7 @@ UserInteraction :: UserInteraction() {
 UserInteraction :: ~UserInteraction() { cout << "everything destructed :)" << endl;}
 void UserInteraction :: drawMenu() {
 	  
-	  cout << "Welcom to Workshop Simulator" << endl;
+	  cout << "Welcome to Workshop Simulator" << endl;
 	  int speed,tires,vip,openingHour,closingHour;
 	  string name;
 	  cout << " 1. to use Default setup\n" << " 2. to use your Own\n";
@@ -54,12 +54,16 @@ void UserInteraction :: drawMenu() {
         cout<<" 5.Simulate\n";
         cout<<" 6.Quit\n ";
         cout<<"Enter your choice : "; 
-        choice = readAll<int>(1,5);
+        choice = readAll<int>(1,6);
         switch(choice)
         {
         case 1: {
 			cout<<"Enter customer name ";
             cin>>name;
+            if(name=="#") {
+				name = "##";
+				cout << "# forbiden - altered to ##" << endl;            
+            }
             cout<<"Enter 1 if vip 0 if not ";
             vip = readAll<bool>(0,1);
             cout<<"Enter tires to change ";
@@ -98,13 +102,13 @@ void UserInteraction :: drawMenu() {
         }
         case 5: {
 
-        	workshopSetup.setCars(custList );
+        	workshopSetup.setCars(custList);
         	workerGroup.sortWorkers();
         //	workerGroup.showWorkers();
         	workshopSetup.setWorkers(workerGroup);
         	workshopSetup.drawWorkshop();
         	custList.display();
-        	workshopSetup.simulateHour(workerGroup);
+        	workshopSetup.simulateHour(workerGroup, custList);
 			break;
         }
 		case 6: {
@@ -122,8 +126,10 @@ void UserInteraction :: drawMenu() {
 		workshopSetup.drawWorkshop();
 		workshopSetup.leftCustomers();			
     } else {
-    	cout <<"The day has finished. Success! every customer is satisfied! :D";
+    	cout <<"The day has finished. Success! every customer is satisfied! :D" << endl;
     }
+    cout << "Satisfied customers:" << endl;
+    custList.printCustVector();
 }
 /* metoda wczytujaca dane dowolnego typu spelniajace waruenk,
 ze naleza do przedzialu <bottom, top> */

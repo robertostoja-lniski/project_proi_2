@@ -9,16 +9,22 @@
 #include "Workshop.h"
 #include "UserInteraction.h"
 using namespace std;
-Box::Box() {}
+Box::Box() {
+	workerName = "#";
+}
 Box::Box(bool available, string custName, string workerName,
 			int time, int workerSpeed) {
 		this->available = available;
 		this->custName = custName;
+		this->workerName = workerName;
 		this->time = time;
 		this->workerSpeed = workerSpeed;
 }
 bool Box::getAvailable(){
 	return available;
+}
+bool Box::getVip(){
+	return vip;
 }
 string Box::getCustName(){
 	return custName;
@@ -34,6 +40,9 @@ int Box::getWorkerSpeed(){
 }
 void Box:: setAvailable(bool available){
 	this->available = available;
+}
+void Box:: setVip(bool vip){
+	this->vip = vip;
 }
 void Box::setCustName(string custName){
 	this->custName = custName;

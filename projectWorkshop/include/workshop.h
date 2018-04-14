@@ -33,13 +33,17 @@ class Workshop {
         void setBoxes(int);
         //symuluje godzine pracy - nowi klienci "wjezdzaja do boxow"
         //najlepsi pracownicy przydzielani sa do samochodow
-        void simulateHour(Workers&);
+        //obsluzeni klienci trafiaja do wektora klientow zadowolonych
+        //(znajdujacym sie w obiekcie Customers)
+        void simulateHour(Workers&, Customers&);
         //wyswietla layout warsztatu
         void drawWorkshop();
         //ustawia samochody w boxach
         void setCars(Customers&);
         //ustawia pracownikow do boxow
         void setWorkers(Workers&);
+        // zamienia stringa na unsigned inta, lub zwraca -1 w wypadku niepowodzenia
+        int stringToInt(std::string);
 };
 
 #endif // CUSTOMERS_H_INCLUDED
